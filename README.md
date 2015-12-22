@@ -58,11 +58,14 @@ for parameterization. The following variables are available:
 * **proxies / proxy**: Optional downstream proxies that use the PROXY protocol.
                        The latter value overrides the former. (This enables the
                        `proxy_protocol` option on all servers, which means you
-                       cannot use plain HTTP(S) anymore.)
+                       cannot connect using plain HTTP(S) anymore.)
+
+* **sslterm_container**: The name of the container that is running Nginx with
+                         the generated configuration. This container will be
+                         sent a HUP signal when the configuration changes.
 
 Containers that want to use SSL set the `VIRTUAL_HOST` environment variable to
 the domain (or comma-separated list of domains).
 
-Currently, only one SSL certificate can be used for all servers. Using per-domain
-certificates (possible using [Let's Encrypt](https://letsencrypt.org/)) are on
-the roadmap.
+Currently, only one SSL certificate can be used. Using per-domain certificates
+(possible using [Let's Encrypt](https://letsencrypt.org/)) are on the roadmap.
